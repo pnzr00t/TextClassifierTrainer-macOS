@@ -119,7 +119,7 @@ do {
     
     print("Training accuracy - ", trainingAccuracy)
     print("Validate accuracy - ", validateAccuracy)
-    print("Evaludate accuracy - ", evaluateAccuracy)
+    print("Evaluate accuracy - ", evaluateAccuracy)
     
     print("\n")
     print("mlTextClassifier.trainingMetrics.classificationError = ",mlTextClassifier.trainingMetrics.classificationError)
@@ -128,16 +128,15 @@ do {
 
     
     let metaDataForModel = MLModelMetadata(author: "POA",
-                                           shortDescription: "A model trained to classify product review sentiment", version: "0.2")
+                                           shortDescription: "A model trained to classify product review sentiment", version: "0.3")
 
     
     // get URL to the the documents directory in the sandbox
     let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
 
     // add a filename
-    let outModelFileUrl = documentsUrl.appendingPathComponent("ReviewClassifier.mlmodel")
+    let outModelFileUrl = documentsUrl.appendingPathComponent("ReviewClassifier-Bad-Good-Normal.mlmodel")
     
-    //let modelFileURL = URL(fileURLWithPath: "/Volumes/Samsung_T5/Users/TestFolder/CoreML/NauralLanguage/TextClassifierTrainer/TrainedTextClassifierModel/ReviewClassifier.mlmodel")
     try mlTextClassifier.write(to: outModelFileUrl, metadata: metaDataForModel)
     print("Model file path = ", outModelFileUrl);
 } catch {
