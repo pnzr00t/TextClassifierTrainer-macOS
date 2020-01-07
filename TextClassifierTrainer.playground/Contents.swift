@@ -93,8 +93,8 @@ do {
     trainingDataTable = try MLDataTable(contentsOf: trainingDataFileURL)
     testingDataTable = try MLDataTable(contentsOf: testingDataFileURL)
     
-    print("Entries used for training: \(trainingDataTable?.size)")
-    print("Entries used for testing: \(testingDataTable?.size)")
+    print("Entries used for training: \(trainingDataTable!.size)")
+    print("Entries used for testing: \(testingDataTable!.size)")
 } catch {
     print("Upload training data exception - ", error.localizedDescription)
     exit(0)
