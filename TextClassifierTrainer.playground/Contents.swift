@@ -14,8 +14,8 @@ do {
     trainingDataTable = try MLDataTable(contentsOf: trainingDataFileURL)
     testingDataTable = try MLDataTable(contentsOf: testingDataFileURL)
     
-    print("Entries used for training: \(trainingDataTable?.size)")
-    print("Entries used for testing: \(testingDataTable?.size)")
+    print("Entries used for training: \(trainingDataTable!.size)")
+    print("Entries used for testing: \(testingDataTable!.size)")
 } catch {
     print("Upload training data exception - ", error.localizedDescription)
     exit(0)
@@ -51,9 +51,13 @@ do {
     let metaDataForModel = MLModelMetadata(author: "POA",
                                            shortDescription: "A model trained to classify product review sentiment", version: "0.1")
 
+    // get URL to the the documents directory in the sandbox
+    let documentsUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+
+    // add a filename
+    let outModelFileUrl = documentsUrl.appendingPathComponent("ReviewClassifier-default.mlmodel")
     
-    let modelFileURL = URL(fileURLWithPath: "/Volumes/Samsung_T5/Users/TestFolder/CoreML/NauralLanguage/TextClassifierTrainer/TrainedTextClassifierModel/ReviewClassifier.mlmodel")
-    try mlTextClassifier.write(to: modelFileURL, metadata: metaDataForModel)
+    try mlTextClassifier.write(to: outModelFileUrl, metadata: metaDataForModel)
 
 } catch {
     print("Training info exception - ", error.localizedDescription)
