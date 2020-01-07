@@ -5,4 +5,4 @@ Training set "Amazon instant video". Source link - http://jmcauley.ucsd.edu/data
 
 Classification trainig field in json file "reviewText". Label field - "overall".
 
-Overall field have value from "1.0" - "5.0"
+Overall field have value: "1.0" - "5.0"
